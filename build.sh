@@ -34,7 +34,7 @@ else
 fi
 codesign --verify --strict --verbose=2 "$APP"
 RUN_APP="$APP"
-# Match the reference script's local install-and-launch workflow; opt out for CI.
+# Install and launch the Applications copy by default; opt out for CI.
 if [[ "${PODMAN_STATUSBAR_INSTALL:-1}" == 1 && "${CI:-false}" != true ]]; then
     INSTALL_ROOT="${PODMAN_STATUSBAR_INSTALL_DIR:-/Applications}"
     mkdir -p "$INSTALL_ROOT"
@@ -45,10 +45,12 @@ if [[ "${PODMAN_STATUSBAR_INSTALL:-1}" == 1 && "${CI:-false}" != true ]]; then
         osascript -e 'tell application id "local.podman-statusbar" to quit'
     fi
     RUN_APP="$INSTALL_ROOT/PodmanStatusbar.app"
+    echo "==> Installing $RUN_APP"
     rm -rf "$RUN_APP"
     mv "$STAGE/PodmanStatusbar.app" "$RUN_APP"
     rmdir "$STAGE"
     trap - EXIT
+    echo "==> Launching $RUN_APP"
     open "$RUN_APP"
 fi
 echo "Built: $APP"

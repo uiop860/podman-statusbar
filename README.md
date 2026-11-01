@@ -15,7 +15,7 @@ swift test
 ./build.sh release
 ```
 
-The build creates, signs, installs, and opens `build/PodmanStatusbar.app`. To build without installing or opening it:
+The build creates and signs `build/PodmanStatusbar.app`, copies it to `/Applications/PodmanStatusbar.app`, and launches the installed copy. It quits any running copy before replacing it. To build without installing or opening it:
 
 ```sh
 PODMAN_STATUSBAR_INSTALL=0 ./build.sh release
