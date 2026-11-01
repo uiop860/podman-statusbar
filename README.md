@@ -28,4 +28,4 @@ You can also open `PodmanStatusbar.xcodeproj` in Xcode and run the `PodmanStatus
 
 The app refreshes when opened and about every 30 seconds while the machine is running, or every 2 minutes while it is stopped. It does not query containers while stopped. Missing Podman, a missing machine, and CLI or connection errors appear in the menu.
 
-The menu bar icon uses muted colors to show the machine state. Its white number is the running-container count.
+Monochrome SF Symbols show the machine state; the number shows the running-container count.
